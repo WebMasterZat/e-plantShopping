@@ -3,10 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [], // Массив для хранения объектов растений в корзине
+    items: [],
   },
   reducers: {
-    // Добавление товара в корзину
     addItem: (state, action) => {
       const { name, image, cost } = action.payload;
       const existingItem = state.items.find(item => item.name === name);
@@ -16,13 +15,9 @@ export const CartSlice = createSlice({
         state.items.push({ name, image, cost, quantity: 1 });
       }
     },
-
-    // Удаление товара из корзины по названию
     removeItem: (state, action) => {
       state.items = state.items.filter(item => item.name !== action.payload);
     },
-
-    // Обновление количества конкретного товара
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload;
       const itemToUpdate = state.items.find(item => item.name === name);
